@@ -10,12 +10,16 @@ const Cart = () => (
   <CartContext.Consumer>
     {value => {
       const {cartList, removeAllCartItems} = value
+      console.log(cartList.length)
       const showEmptyView = cartList.length === 0
       let totalPrice = 0
-      cartList.every(item => {
-        totalPrice += item.price * item.quantity
-        return totalPrice
-      })
+
+      if (showEmptyView !== true) {
+        cartList.every(item => {
+          totalPrice += item.price * item.quantity
+          return totalPrice
+        })
+      }
 
       // TODO: Update the functionality to remove all the items in the cart
       const onRemoveAllCartItems = () => {
